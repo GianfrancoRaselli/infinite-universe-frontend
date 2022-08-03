@@ -5,18 +5,18 @@
         <span class="mr-2" v-if="isConnected">Connected <span class="hide" v-if="isConnectedToTheValidChain">to {{ validChainName }}</span> with: {{ splitAddress }}</span>
         
         <div class="dropdown" v-if="isConnected">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+          <AppButton classes="btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <div class="dropdown-item">
-              <button class="btn btn-sm btn-warning btn-dropdown" @click="changeToTheValidChain" v-if="!isConnectedToTheValidChain">Change to {{ validChainName }}</button>
+              <AppButton classes="btn-sm btn-warning btn-dropdown" :text="'Change to ' + validChainName" v-if="!isConnectedToTheValidChain" @click="changeToTheValidChain" />
             </div>
             <div class="dropdown-item">
-              <button class="btn btn-sm btn-danger btn-dropdown" @click="disconnect">Disconnect</button>
+              <AppButton classes="btn-sm btn-danger btn-dropdown" text="Disconnect" @click="disconnect" />
             </div>
           </div>
         </div>
 
-        <button class="btn btn-sm btn-success" v-if="!isConnected" @click="connectToMetamask">Connect to MetaMask</button>
+        <AppButton classes="btn-sm btn-success" text="Connect to MetaMask" v-if="!isConnected" @click="connectToMetamask" />
       </div>
       <div v-else>
         You need to install MetaMask

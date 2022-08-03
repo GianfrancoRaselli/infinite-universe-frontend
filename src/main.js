@@ -10,6 +10,8 @@ import AppDate from "@/components/global/AppDate";
 import AppAlert from "@/components/global/AppAlert";
 import AppButton from "@/components/global/AppButton";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 const app = createApp(App);
 
@@ -20,6 +22,6 @@ app.use(FontAwesome);
 app.component('AppNotifications', AppNotifications);
 app.component('AppDate', AppDate);
 app.component('AppAlert', AppAlert);
-app.component('AppSmallBtn', AppButton);
+app.component('AppButton', AppButton);
 
 app.mount("#app");
