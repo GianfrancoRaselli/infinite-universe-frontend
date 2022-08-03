@@ -1,4 +1,4 @@
-# infinite-universe-frontend
+# Infinite Universe Frontend
 
 ## Project setup
 ```
