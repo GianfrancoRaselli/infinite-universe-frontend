@@ -10,7 +10,6 @@ import AppDate from "@/components/global/AppDate";
 import AppAlert from "@/components/global/AppAlert";
 import AppButton from "@/components/global/AppButton";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 

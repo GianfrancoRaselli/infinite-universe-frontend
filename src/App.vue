@@ -35,6 +35,8 @@ export default {
 </script>
 
 <style>
+@import'~bootstrap/dist/css/bootstrap.min.css';
+
 * {
   box-sizing: border-box;
 }
@@ -71,6 +73,6 @@ body {
   flex-basis: 100%;
   max-width: 1000px;
   margin: auto;
-  padding: 10px 12px 10px 12px;
+  padding: calc(var(--metamask-nav-height) + 10px) 12px 10px 12px;
 }
 </style>
