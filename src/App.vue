@@ -1,7 +1,8 @@
 <template>
-  <div class="page-content" :key="address">
+  <div class="page-content">
     <header class="page-content__header">
       <MetamaskNavbar class="header__nav--metamask" />
+      <WalletModal />
     </header>
     <main class="page-content__main">
       <router-view :key="`${$route.path}${JSON.stringify($route.query)}`" />
@@ -13,25 +14,23 @@
 
 <script>
 import MetamaskNavbar from "@/components/MetamaskNavbar";
-import AppNotifications from '@/components/global/AppNotifications';
+import WalletModal from "@/components/WalletModal";
+import AppNotifications from "@/components/global/AppNotifications";
 
-import { connectToMetamask } from '@/helpers/connection';
-import { mapState } from "vuex";
+import { connectToMetamask } from "@/helpers/connection";
 
 export default {
   name: "App",
   components: {
     MetamaskNavbar,
-    AppNotifications
+    WalletModal,
+    AppNotifications,
   },
   computed: {
-    ...mapState({
-      address: state => state.connection.address,
-    }),
   },
   created() {
     connectToMetamask();
-  }
+  },
 };
 </script>
 
@@ -46,12 +45,16 @@ body {
 }
 
 .page-content {
-  --metamask-nav-height: 40px;
+  --metamask-nav-height: 50px;
   min-width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.page-content__header {
+  user-select: none;
 }
 
 .header__nav--metamask {
@@ -68,6 +71,7 @@ body {
   flex-basis: 100%;
   max-width: 1000px;
   margin: auto;
-  padding: calc(var(--metamask-nav-height) + 10px) 12px 10px 12px;
+  padding: calc(var(--metamask-nav-height) + 10px) 12px
+    10px 12px;
 }
 </style>

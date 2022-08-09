@@ -1,64 +1,116 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
-    <div class="ml-auto">
+    <div class="navbar--menu ml-auto">
       <div v-if="hasMetamask">
-        <span class="mr-2" v-if="isConnected">Connected <span class="hide" v-if="isConnectedToTheValidChain">to {{ validChainName }}</span> with: {{ splitAddress }}</span>
-        
-        <div class="dropdown" v-if="isConnected">
-          <AppButton classes="btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <div class="dropdown-item">
-              <AppButton classes="btn-sm btn-warning btn-dropdown" :text="'Change to ' + validChainName" v-if="!isConnectedToTheValidChain" @click="changeToTheValidChain" />
-            </div>
-            <div class="dropdown-item">
-              <AppButton classes="btn-sm btn-danger btn-dropdown" text="Disconnect" @click="disconnect" />
-            </div>
+        <button
+          class="btn btn-light btn-wallet"
+          data-toggle="modal"
+          data-target="#walletModal"
+          v-if="isConnected"
+          @click="openWalletModal"
+        >
+          <fa-icon
+            icon="wallet"
+            class="icon mr-2 wallet-icon"
+            size="2x"
+          ></fa-icon
+          >{{ splitAddress }}
+        </button>
+
+        <AppButton
+          classes="btn-sm btn-success"
+          :text="connectMetaMaskMsg"
+          v-if="!isConnected"
+          @click="connectToMetamask"
+        />
+      </div>
+      <div v-else v-text="installMetaMaskMsg"></div>
+
+      <div class="dropdown ml-3">
+        <fa-icon
+          icon="globe"
+          class="dropdown-toggle icon mr-1"
+          size="1x"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        ></fa-icon>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="dropdownMenuButton"
+        >
+          <div
+            class="dropdown-item dropdown-item--language"
+            v-for="(language, index) in languages"
+            :key="index"
+            @click="changeLanguage(language)"
+          >
+            <span
+              :class="{ bold: selectedLanguage === language }"
+              v-text="language"
+            />
+            <fa-icon
+              icon="check"
+              class="dropdown-toggle icon mr-1"
+              size="1x"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              v-if="selectedLanguage === language"
+            ></fa-icon>
           </div>
         </div>
-
-        <AppButton classes="btn-sm btn-success" text="Connect to MetaMask" v-if="!isConnected" @click="connectToMetamask" />
-      </div>
-      <div v-else>
-        You need to install MetaMask
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import { getMessages } from "@/dictionary";
 import { mapState, mapGetters } from "vuex";
-import { hasMetamask, connectToMetamask, checkValidChain, disconnect  } from '@/helpers/connection';
+import { hasMetamask, connectToMetamask } from "@/helpers/connection";
 
 export default {
   name: "MetamaskNavbarComponent",
   data() {
     return {
-      
+      languages: ["English", "Español"],
     };
   },
   computed: {
+    ...getMessages(["connectMetaMask", "installMetaMask"]),
+
     ...mapState({
-      address: state => state.connection.address,
+      selectedLanguage: (state) => state.config.selectedLanguage,
+      address: (state) => state.connection.address,
     }),
-    ...mapGetters(["isConnected", "isConnectedToTheValidChain", "validChainName"]),
+    ...mapGetters(["isConnected"]),
 
     hasMetamask,
-    
+
     splitAddress() {
-      let splitAccount = '';
+      let splitAccount = "";
 
       for (let i = 0; i < 4; i++) {
         splitAccount += this.address.charAt(i);
       }
-      splitAccount += '...';
+      splitAccount += "...";
       for (let i = this.address.length - 4; i < this.address.length; i++) {
         splitAccount += this.address.charAt(i);
       }
 
       return splitAccount;
-    }
+    },
   },
   methods: {
+    changeLanguage(language) {
+      this.$store.commit("setSelectedLanguage", language);
+    },
+
     async connectToMetamask() {
       this.$store.commit("setDisconnected", false);
       try {
@@ -67,14 +119,7 @@ export default {
         this.$store.commit("setDisconnected", true);
       }
     },
-    changeToTheValidChain() {
-      checkValidChain();
-    },
-    disconnect() {
-      this.$store.commit("setDisconnected", true);
-      disconnect();
-    },
-  }
+  },
 };
 </script>
 
@@ -83,16 +128,40 @@ nav {
   color: white;
 }
 
-.dropdown {
-  display: inline-block;
+.navbar--menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dropdown-item {
-  padding: 2px 0;
+.btn-wallet {
+  font-weight: bold;
+  position: relative;
+  padding: 3px 5px 3px 40px;
+  border-radius: 10px;
 }
 
-.btn-dropdown {
-  width: 100%;
+.wallet-icon {
+  position: absolute;
+  top: -8.5px;
+  left: -15px;
+  background-color: rgba(255, 255, 255, 0.981);
+  border: 1px solid black;
+  padding: 7px;
+  border-radius: 50px;
+}
+
+.dropdown-item--language {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 @media (max-width: 530px) {
