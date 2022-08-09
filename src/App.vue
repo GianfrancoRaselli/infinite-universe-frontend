@@ -71,7 +71,6 @@ body {
   flex-basis: 100%;
   max-width: 1000px;
   margin: auto;
-  padding: calc(var(--metamask-nav-height) + 10px) 12px
-    10px 12px;
+  padding: 10px 12px 10px 12px;
 }
 </style>
