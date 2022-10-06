@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">ProOnli<span class="logo-dec">PC</span></a>
+                  <a class="navbar-brand" href="#"><img class="logo-img" src="@/assets/img/logo.png" /></a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                   <ul class="nav navbar-nav navbar-right">
@@ -34,13 +34,12 @@
             <div class="container">
               <div class="row">
                 <div class="banner-info text-center wow fadeIn delay-05s">
-                  <h1 class="bnr-title">We are at ProOnli<span>PC</span></h1>
-                  <h2 class="bnr-sub-title">Starting a new journey!!</h2>
+                  <h1 class="bnr-title">Infinite Universe</h1>
+                  <h2 class="bnr-sub-title">¿Qué es Infinite Universe?</h2>
                   <p class="bnr-para">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.<br />
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip <br />ex ea commodo
-                    consequat.
+                    Infinite Universe es un juego de Ciencia Ficción click-to-earn diseñado para dar a nuestros conquistadores la
+                    experiencia de tener su propio planeta, coleccionarlos en búsqueda de estrellas a través del universo con el
+                    fin de tener $stardust, este material les permitirá tener grandes beneficios.
                   </p>
                   <div class="brn-btn">
                     <a href="#" class="btn btn-download">Download now!</a>
@@ -516,6 +515,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* Own Styles */
+
+.navbar-brand {
+  position: relative;
+}
+
+.logo-img {
+  position: absolute;
+  top: -25px;
+  height: 100px;
+  width: 100px;
+}
+
 /* Styles */
 
 body {
@@ -630,8 +642,9 @@ HEADER
 ************************************
 ***********************************/
 .header {
-  background: url("@/assets/img/bg-banner02.jpg") no-repeat fixed;
+  background: url("@/assets/img/header.png") no-repeat fixed;
   background-size: cover;
+  background-position: bottom;
   min-height: 650px;
   position: relative;
 }
