@@ -14,17 +14,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#"><img class="logo-img" src="@/assets/img/logo.png" /></a>
+                  <a class="navbar-brand" href="#"><span class="logo-dec">Infinite</span>&nbsp;Universe</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                   <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#main-header">Home</a></li>
-                    <li class=""><a href="#feature">About</a></li>
-                    <li class=""><a href="#service">Services</a></li>
-                    <li class=""><a href="#portfolio">Portfolio</a></li>
-                    <li class=""><a href="#testimonial">Testimonial</a></li>
-                    <li class=""><a href="#blog">Blog</a></li>
+                    <!--<li class=""><a href="#feature"></a></li>
+                    <li class=""><a href="#service"></a></li>
+                    <li class=""><a href="#portfolio"></a></li>
+                    <li class=""><a href="#testimonial"></a></li>
+                    <li class=""><a href="#blog"></a></li>-->
                     <li class=""><a href="#contact">Contact Us</a></li>
+                    <a href="#" class="btn btn-connect">Connect to MetaMask</a>
                   </ul>
                 </div>
               </div>
@@ -34,12 +35,12 @@
             <div class="container">
               <div class="row">
                 <div class="banner-info text-center wow fadeIn delay-05s">
-                  <h1 class="bnr-title">Infinite Universe</h1>
-                  <h2 class="bnr-sub-title">¿Qué es Infinite Universe?</h2>
+                  <img class="logo-img" src="@/assets/img/logo.png" />
+                  <h2 class="bnr-sub-title">Infinite Universe...</h2>
                   <p class="bnr-para">
-                    Infinite Universe es un juego de Ciencia Ficción click-to-earn diseñado para dar a nuestros conquistadores la
-                    experiencia de tener su propio planeta, coleccionarlos en búsqueda de estrellas a través del universo con el
-                    fin de tener $stardust, este material les permitirá tener grandes beneficios.
+                    Es un juego de Ciencia Ficción click-to-earn diseñado para dar a nuestros conquistadores la experiencia de
+                    tener su propio planeta, coleccionarlos en búsqueda de estrellas a través del universo con el fin de tener
+                    $stardust, este material les permitirá tener grandes beneficios.
                   </p>
                   <div class="brn-btn">
                     <a href="#" class="btn btn-download">Download now!</a>
@@ -517,15 +518,44 @@ export default {
 <style scoped>
 /* Own Styles */
 
-.navbar-brand {
-  position: relative;
+.navbar-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.btn-connect {
+  margin-left: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 24px;
+  padding: 10px 30px;
+  border-radius: 60px;
+  outline: none !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: all 0.3s;
+  border: 1px solid #be9e21;
+  color: #be9e21;
+}
+
+.btn-connect:hover {
+  background: #be9e21;
+  color: #fff;
 }
 
 .logo-img {
-  position: absolute;
-  top: -25px;
-  height: 100px;
-  width: 100px;
+  position: relative;
+  top: -125px;
+  height: 400px;
+  width: 400px;
+}
+
+.bnr-sub-title {
+  margin-top: -185px;
 }
 
 /* Styles */
@@ -645,12 +675,12 @@ HEADER
   background: url("@/assets/img/header.png") no-repeat fixed;
   background-size: cover;
   background-position: bottom;
-  min-height: 650px;
+  min-height: 100vh;
   position: relative;
 }
 .bg-color {
   background-color: rgba(0, 0, 0, 0.5);
-  min-height: 650px;
+  min-height: 100vh;
 }
 #main-header {
 }
